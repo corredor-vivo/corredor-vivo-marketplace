@@ -1,0 +1,5 @@
+import { OrderDetail } from "~/shared/sales/orders";
+export default async function ProducerOrderPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return <OrderDetail id={id} producer />;
+}
