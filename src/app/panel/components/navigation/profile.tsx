@@ -77,17 +77,6 @@ export function Profile() {
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <User />
-                Meu Perfil
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Store />
-                Minha Loja
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
               <DropdownMenuItem variant="destructive" onClick={logOut}>
                 <LogOut />
                 Terminar Sessão

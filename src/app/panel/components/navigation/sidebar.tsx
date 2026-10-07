@@ -24,12 +24,12 @@ export function AppSidebar() {
   if (isMobile) return null;
 
   return (
-    <Sidebar collapsible="icon" variant="inset">
-      <SidebarHeader>
+    <Sidebar collapsible="icon" variant="inset" className="border-r bg-white">
+      <SidebarHeader className="bg-white">
         <NavbarProfile />
       </SidebarHeader>
       <SidebarSeparator />
-      <SidebarContent>
+      <SidebarContent className="bg-white">
         <SidebarGroup>
           <SidebarMenu>
             {NAVBAR_ITEMS.filter(
