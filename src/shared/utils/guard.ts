@@ -1,6 +1,6 @@
 import { Role } from "~/app/(account)/enums/role";
 
-const publicRoutes = ["/sign-in", "/sign-up", "/forgeted-password"];
+const publicRoutes = ["/sign-in", "/sign-up", "/forgeted-password", "/"];
 
 const roleRoutes: Record<string, readonly Role[]> = {
   "/panel": ["producer"],
