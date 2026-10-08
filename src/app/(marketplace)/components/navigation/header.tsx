@@ -8,6 +8,7 @@ import { Profile } from '~/app/panel/components/navigation/profile';
 import { Badge } from '~/components/ui/badge';
 import { Button, buttonVariants } from '~/components/ui/button';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '~/components/ui/input-group';
+import { ShoppingCart } from '../views/shopping-cart';
 
 export function MarketPlaceHeader() {
 
@@ -49,15 +50,7 @@ export function MarketPlaceHeader() {
                     <div className="h-5 w-px bg-zinc-200 mx-1" />
 
                     <div className="flex gap-3">
-                        <div className="relative">
-                            <Button variant="ghost">
-                                <ShoppingBag size={20} />
-                            </Button>
-
-                            <Badge className="absolute -top-1 -right-1 bg-emerald-700 px-1 font-bold text-white">
-                                3
-                            </Badge>
-                        </div>
+                       <ShoppingCart />
                         <div className="relative">
                             <Button variant={"ghost"}>
                                 <Bell size={"20"} />

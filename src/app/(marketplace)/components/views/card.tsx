@@ -4,6 +4,7 @@ import { useAuth } from "~/app/(account)/hooks/use-auth"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import { formatCurrency } from "~/shared/utils/currency"
+import { useCart } from "../../hooks/use-cart"
 
 export function ProductCard({
     product,
@@ -11,6 +12,12 @@ export function ProductCard({
     product: ConsolidateProductModel
 }) {
     const { isAuthenticated } = useAuth()
+    const { addCartItem } = useCart();
+
+    const handleAddToCart = async () => {
+        await addCartItem(product.uuid);
+    }
+
     return (
         <div className="group shadow rounded-md overflow-hidden transition-all duration-300 hover:-translate-y-1">
             <div className="relative overflow-hidden">
@@ -45,7 +52,7 @@ export function ProductCard({
                     </h3>
 
                     <h5 className="text-emerald-800 font-semibold">
-                        {formatCurrency(100)}
+                        {formatCurrency(product.price)}
                     </h5>
                 </div>
 
@@ -57,13 +64,13 @@ export function ProductCard({
                         </p>
 
                         <p className="mt-0.5 text-sm font-semibold text-gray-800">
-                            {Number(product.quantity).toLocaleString("pt-PT")}{" "}
+                            {(Number(product.quantity) - Number(product.reserverdQuantity)).toLocaleString("pt-PT")}{" "}
                             {product.unit.abbreviation}
                         </p>
                     </div>
 
                     {isAuthenticated && (
-                        <Button size={"icon"} className="bg-emerald-700 text-white hover:bg-emerald-800 cursor-pointer">
+                        <Button size={"icon"} className="bg-emerald-700 text-white hover:bg-emerald-800 cursor-pointer" onClick={handleAddToCart}>
                             <ShoppingCart />
                         </Button>
                     )}

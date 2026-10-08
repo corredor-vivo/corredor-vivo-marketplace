@@ -9,7 +9,9 @@ type ConsolidateProductModel = {
   name: string;
   slug: string;
   image: string;
-  quantity: string;
+  quantity: number;
+  reserverdQuantity: number;
+  price: number
 
   unit: {
     id: number;

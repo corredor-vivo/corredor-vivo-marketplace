@@ -3,7 +3,7 @@ import { getConsolidatedProduct } from "../services/product.service"
 
 export function useMarketplace() {
 
-    const { data: products, isFetched, isLoading } = useQuery<ConsolidateProductModel[]>({
+    const { data: products, isFetched, isLoading, refetch } = useQuery<ConsolidateProductModel[]>({
         initialData: [],
         queryKey: ["marketplace"],
         queryFn: async () => {
@@ -14,6 +14,7 @@ export function useMarketplace() {
     return {
         isFetched,
         isLoading,
-        products
+        products,
+        refetch
     }
 }

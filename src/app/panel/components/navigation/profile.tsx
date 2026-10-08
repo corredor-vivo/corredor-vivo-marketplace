@@ -21,7 +21,7 @@ import {
 import { useSidebar } from "~/components/ui/sidebar";
 import { cn } from "~/lib/utils";
 
-function getAcronim(name: string = ""): string {
+export function getAcronim(name: string = ""): string {
   const ignoredWords = ["de", "da", "do", "das", "dos", "e"];
 
   return name
