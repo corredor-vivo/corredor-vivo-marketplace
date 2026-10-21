@@ -99,7 +99,7 @@ export function ProductDataTable({ data }: DataTableProps) {
               </TableCell>
               <TableCell>{formatCurrency(product.price)}</TableCell>
               <TableCell>
-                {product.quantity} {product.unit.abbreviation}
+                {product.quantity - product.reserverdQuantity} {product.unit.abbreviation}
               </TableCell>
               <TableCell>
                 <span

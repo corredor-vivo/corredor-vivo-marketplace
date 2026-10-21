@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { http } from "~/shared/http";
 import { ShoppingCart, ShoppingCartItem } from "../models/shopping-cart";
 import { useMarketplace } from "./use-marketplace";
@@ -14,21 +14,23 @@ type useCartType = {
     currentCart: ShoppingCart | null;
     items: ShoppingCartItem[];
     loading: boolean;
-    refetch: () => void;
+    refetch: () => Promise<unknown>;
     addCartItem: (product_id: string, quantity?: number) => Promise<void>;
-    clearCart: () => void;
+    clearCart: () => Promise<void>;
 }
 
 export function useCart(): useCartType {
     const { refetch } = useMarketplace()
+    const queryClient = useQueryClient();
     const query = useQuery({
         queryKey: ["shopping-cart"],
         queryFn: async () => {
             const storedCart = localStorage.getItem(CART_KEY);
 
             if (storedCart) {
+                const cart = JSON.parse(storedCart) as ShoppingCart;
                 const response = await http.get(
-                    `/shopping-cart/${storedCart}`
+                    `/shopping-cart/${cart.uuid}`
                 );
 
                 return response.data;
@@ -52,15 +54,21 @@ export function useCart(): useCartType {
 
     const addMutate = useMutation({
         mutationFn: async (data: CartItemDto) => {
-            let cart = query.data.uuid;
+            let cart = query.data;
 
             if (!cart) {
-                const response = await http.post("/shopping-cart/draft");
-                cart = response.data.uuid;
-                localStorage.setItem(CART_KEY, cart);
+                const currentCart = await http.get("/shopping-cart/current");
+                cart = currentCart.data;
+
+                if (!cart?.uuid) {
+                    const draftCart = await http.post("/shopping-cart/draft");
+                    cart = draftCart.data;
+                }
+
+                localStorage.setItem(CART_KEY, JSON.stringify(cart));
             }
 
-            await http.post(`/shopping-cart/${cart}/items`, {
+            await http.post(`/shopping-cart/${cart.uuid}/items`, {
                 items: [data]
             });
         }
@@ -76,11 +84,12 @@ export function useCart(): useCartType {
                 quantity,
                 consolidatedProduct: product_id
             })
-            query.refetch();
-            refetch();
+            await queryClient.invalidateQueries({ queryKey: ["shopping-cart"] });
+            await refetch();
         },
-        clearCart: () => {
+        clearCart: async () => {
             localStorage.removeItem(CART_KEY)
+            await queryClient.resetQueries({ queryKey: ["shopping-cart"] });
         }
     };
 }

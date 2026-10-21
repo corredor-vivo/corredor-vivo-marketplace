@@ -49,7 +49,8 @@ export type Category = {
     slug: string;
     code: string;
     description: string;
-    quantity: string;
+    quantity: number;
+    reserverdQuantity: number;
     price: number;
     status: string;
     categoryId: number;

@@ -57,7 +57,7 @@ export function MarketPlaceHeader() {
                             </Button>
 
                             <Badge className="absolute -top-1 -right-1 bg-red-500 px-1 font-bold text-white">
-                                3
+                                0
                             </Badge>
                         </div>
 

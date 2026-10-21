@@ -6,7 +6,7 @@ const roleRoutes: Record<string, readonly Role[]> = {
   "/panel": ["producer"],
   "/cart": ["customer"],
   "/checkout": ["customer"],
-  "/orders": ["customer"],
+  "/orders": ["customer", "driver"],
 };
 
 function matchesRoute(path: string, route: string) {

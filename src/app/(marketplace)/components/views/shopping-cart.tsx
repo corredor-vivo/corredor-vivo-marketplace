@@ -21,7 +21,7 @@ import { http } from "~/shared/http";
 
 export function ShoppingCart() {
 
-    const { items, currentCart, clearCart, refetch } = useCart();
+    const { items, currentCart, clearCart } = useCart();
     const [step, setStep] = useState(1);
     const [open, setIsOpen] = useState(false);
 
@@ -75,11 +75,12 @@ export function ShoppingCart() {
         mutationFn: async (data: CreateOrderDto) => {
             await http.post("/orders/checkout", data)
         },
-        onSuccess: () => {
-            clearCart()
+        onSuccess: async () => {
+            await clearCart()
             setIsOpen(false)
-            refetch()
             setStep(1)
+            setSelectedVehicle(null)
+            addressForm.reset({ street: "", observations: "" })
         }
     })
     const finishOrder = async () => {

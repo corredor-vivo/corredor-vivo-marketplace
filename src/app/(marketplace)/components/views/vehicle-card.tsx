@@ -2,8 +2,6 @@
 import { VehicleModel } from "../../models/vehicle"
 import { AvatarFallback, Avatar, AvatarImage } from "~/components/ui/avatar"
 import { getAcronim } from "~/app/panel/components/navigation/profile"
-import { Button } from "~/components/ui/button"
-import { Check, UserRound } from "lucide-react"
 
 type Props = {
     vehicle: VehicleModel
