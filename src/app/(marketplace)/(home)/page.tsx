@@ -30,7 +30,7 @@ export default function MarketPlace() {
                     <p className="text-center text-slate-600">
                         Nenhum produto disponivel por agora
                     </p>
-                </section> : <section className="grid md:grid-cols-4 sm:grid-cols-2 gap-5"> {products.map((product) => (
+                </section> : <section className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4"> {products.map((product) => (
                     <ProductCard product={product} key={product.id} />
 
                 ))}
