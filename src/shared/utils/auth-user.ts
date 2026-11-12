@@ -49,6 +49,7 @@ export async function getAuthenticatedUser(
 
     return verifyAccessToken(newAccessToken);
   } catch {
+    console.log("Error")
     return null;
   }
 }
