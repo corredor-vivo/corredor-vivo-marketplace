@@ -10,42 +10,42 @@ export function MarketplaceBanner() {
   return (
     <section
       className="
-        relative mx-auto my-6 flex h-[500px]
-        items-center justify-between overflow-hidden rounded-[20px]
-        bg-emerald-700 px-16 py-12 text-white
-        max-[968px]:mx-5 max-[968px]:my-4 max-[968px]:h-auto
-        max-[968px]:flex-col max-[968px]:rounded-2xl
-        max-[968px]:px-5 max-[968px]:py-6
+        relative mx-auto my-4 hidden flex-col items-start overflow-hidden rounded-2xl
+        bg-emerald-700 px-5 py-6 text-white
+        sm:my-6 sm:px-8 sm:py-8
+        md:flex
+        lg:h-[500px] lg:flex-row lg:items-center lg:justify-between
+        lg:rounded-[20px] lg:px-16 lg:py-12
       "
     >
       {/* Conteúdo */}
       <div
         className="
-          z-20 flex max-w-[550px] flex-col gap-4
-          max-[968px]:max-w-full
+          z-20 flex w-full max-w-full flex-col gap-3
+          lg:max-w-[550px] lg:gap-4
         "
       >
-        <h1 className="m-0 text-4xl font-bold">
+        <h1 className="m-0 text-3xl font-bold sm:text-4xl">
           Correr Vivo
         </h1>
 
-        <h2 className="m-0 text-2xl font-semibold">
+        <h2 className="m-0 text-xl font-semibold sm:text-2xl">
           Compre direto de quem produz
         </h2>
 
-        <p className="m-0 mb-4 text-base text-[#EAF8EF]">
+        <p className="m-0 mb-2 text-sm text-[#EAF8EF] sm:mb-4 sm:text-base">
           Produtos frescos, qualidade garantida e preços justos.
         </p>
 
         {/* Features */}
         <div
           className="
-            mb-6 flex gap-6
-            max-[968px]:flex-wrap max-[968px]:gap-3
+            mb-4 grid grid-cols-2 gap-x-3 gap-y-4
+            sm:mb-6 sm:flex sm:gap-6
           "
         >
-          <div className="flex items-center gap-3 text-sm leading-[1.2]">
-            <ShieldCheck size={24} strokeWidth={1.5} />
+          <div className="flex items-center gap-2 text-xs leading-[1.2] sm:gap-3 sm:text-sm">
+            <ShieldCheck size={24} strokeWidth={1.5} className="shrink-0" />
             <span>
               Pagamento
               <br />
@@ -53,8 +53,8 @@ export function MarketplaceBanner() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3 text-sm leading-[1.2]">
-            <Truck size={24} strokeWidth={1.5} />
+          <div className="flex items-center gap-2 text-xs leading-[1.2] sm:gap-3 sm:text-sm">
+            <Truck size={24} strokeWidth={1.5} className="shrink-0" />
             <span>
               Logística
               <br />
@@ -62,8 +62,8 @@ export function MarketplaceBanner() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3 text-sm leading-[1.2]">
-            <Award size={24} strokeWidth={1.5} />
+          <div className="flex items-center gap-2 text-xs leading-[1.2] sm:gap-3 sm:text-sm">
+            <Award size={24} strokeWidth={1.5} className="shrink-0" />
             <span>
               Qualidade
               <br />
@@ -71,8 +71,8 @@ export function MarketplaceBanner() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3 text-sm leading-[1.2]">
-            <Leaf size={24} strokeWidth={1.5} />
+          <div className="flex items-center gap-2 text-xs leading-[1.2] sm:gap-3 sm:text-sm">
+            <Leaf size={24} strokeWidth={1.5} className="shrink-0" />
             <span>
               Apoio ao
               <br />
@@ -85,10 +85,11 @@ export function MarketplaceBanner() {
         <button
           type="button"
           className="
-            flex h-[52px] w-fit items-center justify-center gap-2
+            flex h-11 w-full items-center justify-center gap-2
             rounded-2xl border-none bg-[#F4C542] px-6
-            text-base font-semibold text-[#1C1C1C]
+            text-sm font-semibold text-[#1C1C1C]
             transition-opacity hover:opacity-90
+            sm:h-[52px] sm:w-fit sm:text-base
           "
         >
           Explorar produtos
@@ -99,9 +100,9 @@ export function MarketplaceBanner() {
       {/* Imagem */}
       <div
         className="
-          absolute inset-y-0 right-0 flex w-1/2
+          absolute inset-y-0 right-0 hidden w-1/2
           items-end justify-end
-          max-[968px]:hidden
+          lg:flex
         "
       >
         <img

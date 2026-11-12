@@ -153,9 +153,9 @@ function OrderCard({ order }: { order: Order }) {
 
             <CardContent className="px-5 pb-5 pt-0 sm:px-6 sm:pb-6">
                 <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-                    <div className="flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
+                    <div className="flex flex-col items-start gap-2 border-t border-neutral-100 pt-4 text-xs text-neutral-500 dark:border-neutral-800 dark:text-neutral-400 sm:flex-row sm:items-center sm:justify-between">
                         <span className="flex items-center gap-1.5">
-                            <Clock className="h-3.5 w-3.5" />
+                            <Clock className="h-3.5 w-3.5 shrink-0" />
                             Previsão de carga: {formatDate(order.load_date)}
                         </span>
 
@@ -183,9 +183,9 @@ function OrderCard({ order }: { order: Order }) {
                                 {order.items.map((item) => (
                                     <div
                                         key={item.uuid}
-                                        className="flex items-center justify-between py-2.5 text-sm first:pt-0 last:pb-0"
+                                        className="flex items-center justify-between gap-3 py-2.5 text-sm first:pt-0 last:pb-0"
                                     >
-                                        <div className="space-y-0.5">
+                                        <div className="min-w-0 space-y-0.5">
                                             <p className="font-medium text-neutral-800 dark:text-neutral-200">
                                                 {item.product.name}
                                             </p>
@@ -194,7 +194,7 @@ function OrderCard({ order }: { order: Order }) {
                                                 {formatCurrency(item.unit_price)}
                                             </p>
                                         </div>
-                                        <span className="font-semibold text-neutral-900 dark:text-white">
+                                        <span className="shrink-0 text-right font-semibold text-neutral-900 dark:text-white">
                                             {formatCurrency(item.total_price)}
                                         </span>
                                     </div>
@@ -279,7 +279,7 @@ export default function UserOrdersPage() {
                 </p>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-2 sm:gap-4">
                 {["Todas Encomendas", "Encomendas Pendentes", "Encomendas Encerradas"].map(item => <Badge key={item} variant={status === item ? "default" : "outline"} className={cn("px-3 py-2 cursor-pointer", status === item && "bg-emerald-700")} onClick={() => setStatus(item)}>{item}</Badge>)}
             </div>
             {!orders || orders.length === 0 ? (

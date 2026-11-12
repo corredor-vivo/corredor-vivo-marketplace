@@ -11,8 +11,8 @@ const linkClassName = "inline-flex items-center gap-2 rounded-sm text-sm text-em
 
 export function MarketplaceFooter() {
   return (
-    <footer className=" bg-emerald-700 px-6 py-8 text-white md:px-8">
-      <section className="mx-auto w-full max-w-312 space-y-7 px-4 pb-8 sm:px-6" >
+    <footer className="bg-emerald-700 px-4 py-8 text-white sm:px-6 md:px-8">
+      <section className="mx-auto w-full max-w-312 space-y-7">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-2">
             <p className="text-lg font-bold">Corredor Vivo</p>
