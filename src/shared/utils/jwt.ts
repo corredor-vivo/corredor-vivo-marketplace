@@ -1,4 +1,11 @@
-import { jwtVerify } from "jose";
+import { jwtVerify, type JWTPayload } from "jose";
+import type { Role } from "~/app/(account)/enums/role";
+
+export type AccessTokenPayload = JWTPayload & {
+  sub: string;
+  role?: Role;
+  email?: string;
+};
 
 function getJwtSecret() {
   const secret = process.env.JWT_SECRET;
@@ -10,14 +17,16 @@ function getJwtSecret() {
   return new TextEncoder().encode(secret);
 }
 
-export async function verifyAccessToken(token: string) {
- try {
-   const { payload } = await jwtVerify(token, getJwtSecret(), {
-    algorithms: ["HS256"],
-  });
+export async function verifyAccessToken(
+  token: string,
+): Promise<AccessTokenPayload | undefined> {
+  try {
+    const { payload } = await jwtVerify(token, getJwtSecret(), {
+      algorithms: ["HS256"],
+    });
 
-  return payload;
- } catch(error) {
-  console.error(error)
- }
+    return payload as AccessTokenPayload;
+  } catch {
+    return undefined;
+  }
 }
