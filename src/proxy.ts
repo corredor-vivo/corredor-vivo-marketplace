@@ -10,17 +10,25 @@ export async function proxy(request: NextRequest) {
 
   if (isPublic) return NextResponse.next();
 
-  const user = await getAuthenticatedUser(request);
+  const { user, setCookie } = await getAuthenticatedUser(request);
 
   if (!user) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
-  if (!canAccessRoute(path, user.role)) {
+  if (!user.role || !canAccessRoute(path, user.role)) {
     return new NextResponse("Acesso negado", { status: 403 });
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+
+  // Renova o cookie do access token no browser quando o backend
+  // devolve um novo token no refresh.
+  if (setCookie) {
+    response.headers.append("set-cookie", setCookie);
+  }
+
+  return response;
 }
 
 export const config = {
